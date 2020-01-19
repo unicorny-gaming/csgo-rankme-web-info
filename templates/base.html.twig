@@ -1,0 +1,50 @@
+{#
+   This is the base template used as the application layout which contains the
+   common elements and decorates all the other templates.
+   See https://symfony.com/doc/current/templates.html#template-inheritance-and-layouts
+#}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>{% block title %}CS:GO Rank me page {% endblock %}</title>
+        {% block stylesheets %}
+          <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/uikit@3.2.7/dist/css/uikit.min.css') }}" />
+          <link rel="stylesheet" href="{{ asset('css/site.css') }}?{{ random(10000, 99999) }}" />
+        {% endblock %}
+    </head>
+
+    <body id="{% block body_id %}{% endblock %}" class="uk-light wrap uk-background-center-center uk-background-secondary">
+         <div class="uk-position-z-index uk-position-relative" data-uk-height-viewport="min-height: 400">
+           {% block header %}
+             <!-- NAV -->
+             <div class="uk-position-top">
+               <div class="uk-container uk-container-small">
+                 <nav class="uk-navbar-container uk-navbar-transparent" data-uk-navbar>
+                   <div class="uk-navbar-left">
+                     <div class="uk-navbar-item">
+                       <a class="uk-logo" href="/"></a>
+                     </div>
+                   </div>
+                 </nav>
+               </div>
+             </div>
+             <!-- /NAV -->
+           {% endblock %}
+           {% block body %}{% endblock %}
+           {% block footer %}
+             <!-- FOOT -->
+             <div class="uk-position-bottom-center uk-position-small">
+               <span class="uk-text-small uk-text-center">© 2019 | <a href="https://github.com/zzseba78/Kick-Off" title="Created by KickOff">Created by KickOff</a> | Built with <a href="http://getuikit.com" title="Visit UIkit 3 site" target="_blank" data-uk-tooltip><span data-uk-icon="uikit"></span></a></span>
+             </div>
+             <!-- /FOOT -->
+           {% endblock %}
+         </div>
+
+        {% block javascripts %}
+          <script src="{{ asset('https://cdn.jsdelivr.net/npm/uikit@3.2.7/dist/js/uikit.min.js') }}"></script>
+          <script src="{{ asset('https://cdn.jsdelivr.net/npm/uikit@3.2.7/dist/js/uikit-icons.min.js') }}"></script>
+        {% endblock %}
+      </body>
+</html>

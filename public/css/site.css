@@ -1,0 +1,21 @@
+/* Some css */
+body{
+  overflow-y: scroll;
+  background-repeat: repeat-x;
+  background: url('/images/triangles.png') repeat;
+}
+.wrap::before {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  content: '';
+  z-index: 1;
+  background-color: rgba(0,0,0,0.5);
+}
+.lead {
+  font-size: 1.175em;
+  font-weight: 300;
+}
+.uk-logo img {
+  height: 28px;
+}
