@@ -8,7 +8,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>{% block title %}CS:GO Rank me page {% endblock %}</title>
+        <title>{% block title %}CS:GO Rank me page{% endblock %}</title>
         {% block stylesheets %}
           <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/uikit@3.2.7/dist/css/uikit.min.css') }}" />
           <link rel="stylesheet" href="{{ asset('css/site.css') }}?{{ random(10000, 99999) }}" />
@@ -32,7 +32,21 @@
              </div>
              <!-- /NAV -->
            {% endblock %}
-           {% block body %}{% endblock %}
+           {% block body %}
+           <!-- TEXT -->
+           <div class="uk-container uk-container-small" data-uk-scrollspy="target: > .animate; cls: uk-animation-slide-bottom-small uk-invisible; delay: 300">
+             <h1 class="uk-heading-primary animate uk-invisible uk-text-center" style="font-weight: 700;">{{ block('title') }}</h1>
+             {% block content %}{% endblock %}
+             <!-- <div class="uk-width-4-5@m uk-margin-auto animate uk-invisible">
+               <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad, reiciendis maxime, facilis nam natus incidunt provident.</p>
+             </div> -->
+             <!-- <div class="uk-margin-medium-top animate uk-invisible" data-uk-margin data-uk-scrollspy-class="uk-animation-fade uk-invisible">
+               <a class="uk-button uk-button-default uk-button-large uk-width-2-3 uk-width-auto@s" data-uk-icon="arrow-right" title="Learn More">LEARN MORE</a>
+               <a class="uk-button uk-button-primary uk-button-large uk-width-2-3 uk-width-auto@s" data-uk-icon="check" title="Learn More">TRY IT OUT</a>
+             </div> -->
+           </div>
+           <!-- /TEXT -->
+           {% endblock %}
            {% block footer %}
              <!-- FOOT -->
              <div class="uk-position-bottom-center uk-position-small">

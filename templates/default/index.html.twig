@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id 'homepage' %}
+{% block body_id 'index' %}
+{% block title 'CS:GO Rankme directory' %}
 
 {#
     the homepage is a special page which displays neither a header nor a footer.
@@ -9,16 +10,10 @@
 {% block header %}{% endblock %}
 {% block footer %}{% endblock %}
 
-{% block body %}
-<!-- TEXT -->
-<div class="uk-container uk-container-small" data-uk-scrollspy="target: > .animate; cls: uk-animation-slide-bottom-small uk-invisible; delay: 300">
-  <h1 class="uk-heading-primary animate uk-invisible uk-text-center" style="font-weight: 700;">Player's statistics</h1>
-  <!-- <div class="uk-width-4-5@m uk-margin-auto animate uk-invisible">
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad, reiciendis maxime, facilis nam natus incidunt provident.</p>
-  </div> -->
+{% block content %}
   {% if users %}
     <!-- <div class="uk-overflow-auto"> -->
-      <table class="uk-table uk-table-small uk-table-divider uk-table-justify">
+      <table class="uk-table uk-table-small uk-table-responsive uk-table-divider uk-table-middle">
         <th>RANK</th><th>NAME</th><th>STEAMID</th><th>POINTS</th><th>KDR</th><th>%HS</th><th>ACC</th><th>PROFILE</th>
         {% set rank = 1 %}
         {% for user in users %}
@@ -26,17 +21,12 @@
             {% set kdr = user.deaths > 0 ? user.kills / user.deaths : 0 %}
             {% set hs = user.kills > 0 ? user.headshots / user.kills : 0 %}
             {% set acc = user.shots > 0 ? user.hits / user.shots : 0 %}
-            <td>{{ rank }}</td><td>{{ user.name }}</td><td>{{ user.steam }}</td><td>{{ user.score }}</td><td>{{ kdr|round(2) }}</td><td>{{ hs|round(2) }}</td><td>{{ acc|round(2)}}</td><td>LINK</td>
+            <td>{{ rank }}</td><td>{{ user.name }}</td><td>{{ user.steam }}</td><td>{{ user.score }}</td><td>{{ kdr|round(2) }}</td>
+            <td>{{ hs|round(2) }}</td><td>{{ acc|round(2)}}</td><td><a href="{{ path('user_info', { id: user.id }) }}" class="uk-button">PROFILE</a></td>
             {% set rank = rank + 1 %}
           </tr>
         {% endfor %}
       </table>
     <!-- </div> -->
   {% endif %}
-  <!-- <div class="uk-margin-medium-top animate uk-invisible" data-uk-margin data-uk-scrollspy-class="uk-animation-fade uk-invisible">
-    <a class="uk-button uk-button-default uk-button-large uk-width-2-3 uk-width-auto@s" data-uk-icon="arrow-right" title="Learn More">LEARN MORE</a>
-    <a class="uk-button uk-button-primary uk-button-large uk-width-2-3 uk-width-auto@s" data-uk-icon="check" title="Learn More">TRY IT OUT</a>
-  </div> -->
-</div>
-<!-- /TEXT -->
 {% endblock %}
